@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1730870400000,
+    "title": "Finalize Operating Systems architecture report",
+    "description": "Document virtual memory management, page replacement algorithms, and benchmark scheduling results.",
+    "category": "College",
+    "priority": "High",
+    "completed": false,
+    "dueDate": "2026-11-07",
+    "tags": [
+      "Academics",
+      "OS",
+      "Research"
+    ],
+    "subtasks": [
+      {
+        "id": "st-1",
+        "text": "Draft introduction & scope",
+        "completed": true
+      },
+      {
+        "id": "st-2",
+        "text": "Benchmark round-robin vs priority scheduler",
+        "completed": false
+      },
+      {
+        "id": "st-3",
+        "text": "Generate performance graphs",
+        "completed": false
+      }
+    ],
+    "status": "todo",
+    "createdAt": 1793927541443,
+    "updatedAt": 1793954232233
+  },
+  {
+    "id": 1730863200000,
+    "title": "Prepare meal plans and grocery shopping for the week",
+    "description": "Buy organic greens, almond milk, oats, chicken breasts, and spices.",
+    "category": "Personal",
+    "priority": "Low",
+    "completed": false,
+    "dueDate": "2026-11-04",
+    "tags": [
+      "Health",
+      "Errands"
+    ],
+    "subtasks": [
+      {
+        "id": "st-6",
+        "text": "Check pantry inventory",
+        "completed": true
+      },
+      {
+        "id": "st-7",
+        "text": "Order groceries on delivery app",
+        "completed": false
+      }
+    ],
+    "status": "todo",
+    "createdAt": 1793859141443,
+    "updatedAt": 1793954231625
+  },
+  {
+    "id": 1730860000000,
+    "title": "Design UI mockups for customer onboarding flow",
+    "description": "Create interactive Figma wireframes and run accessibility contrast checks on light & dark mode tokens.",
+    "category": "Work",
+    "priority": "High",
+    "completed": false,
+    "dueDate": "2026-11-06",
+    "tags": [
+      "Design",
+      "Figma",
+      "UX"
+    ],
+    "subtasks": [
+      {
+        "id": "st-8",
+        "text": "Audit competitor checkout steps",
+        "completed": true
+      },
+      {
+        "id": "st-9",
+        "text": "Create high-fidelity mobile frames",
+        "completed": false
+      },
+      {
+        "id": "st-10",
+        "text": "Export assets to developer handbook",
+        "completed": false
+      }
+    ],
+    "status": "todo",
+    "createdAt": 1793837541443,
+    "updatedAt": 1793954230898
+  }
+]

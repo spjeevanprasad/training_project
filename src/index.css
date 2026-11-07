@@ -1,0 +1,1858 @@
+/* ==========================================================================
+   TaskSprint PRO - Apple VisionOS / iOS 18 Frosted Glass & Dim Rainy Window
+   ========================================================================== */
+
+:root {
+  --font-main: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+
+  /* Transitions */
+  --transition-fast: 140ms cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-normal: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-spring: 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Radius (Apple iOS 18 Squircle & Pills) */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Pure Crystal Clear Glass Optics - 100% Background Visibility */
+  --glass-blur: none;
+  --glass-blur-sm: none;
+  --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(255, 255, 255, 0.00) 65%, rgba(255, 255, 255, 0.07) 100%);
+  --glass-shine: inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.85), inset -1px -1px 2px 0 rgba(255, 255, 255, 0.25);
+  --glass-shadow: 0 14px 40px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* Dim Overcast Night / Clear Glass Palette */
+[data-theme="dark"] {
+  --bg-app: #080a10;
+  --bg-gradient: transparent;
+
+  /* 100% Pure Crystal Clear Glass - Zero Blue/Grey Fog (Rain backdrop 100% visible) */
+  --bg-surface: linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.02) 35%, rgba(255, 255, 255, 0.00) 65%, rgba(255, 255, 255, 0.06) 100%);
+  --bg-surface-elevated: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 35%, rgba(255, 255, 255, 0.01) 65%, rgba(255, 255, 255, 0.10) 100%);
+  --bg-surface-subtle: rgba(255, 255, 255, 0.02);
+  --bg-surface-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.06) 35%, rgba(255, 255, 255, 0.02) 65%, rgba(255, 255, 255, 0.14) 100%);
+
+  --border: rgba(255, 255, 255, 0.60);
+  --border-focus: rgba(255, 255, 255, 0.95);
+  --border-subtle: rgba(255, 255, 255, 0.35);
+
+  --text-main: #ffffff;
+  --text-muted: #ffffff;
+  --text-subtle: rgba(255, 255, 255, 0.88);
+
+  --primary: #ffffff;
+  --primary-hover: #ffffff;
+  --primary-light: rgba(255, 255, 255, 0.15);
+  --primary-glow: rgba(255, 255, 255, 0.5);
+
+  /* Categories */
+  --cat-college-bg: rgba(168, 85, 247, 0.18);
+  --cat-college-text: #ffffff;
+  --cat-college-border: rgba(255, 255, 255, 0.6);
+
+  --cat-work-bg: rgba(56, 189, 248, 0.18);
+  --cat-work-text: #ffffff;
+  --cat-work-border: rgba(255, 255, 255, 0.6);
+
+  --cat-personal-bg: rgba(52, 211, 153, 0.18);
+  --cat-personal-text: #ffffff;
+  --cat-personal-border: rgba(255, 255, 255, 0.6);
+
+  /* Priority */
+  --prio-high-bg: rgba(239, 68, 68, 0.25);
+  --prio-high-text: #ffffff;
+  --prio-high-dot: #ffffff;
+
+  --prio-med-bg: rgba(245, 158, 11, 0.25);
+  --prio-med-text: #ffffff;
+  --prio-med-dot: #ffffff;
+
+  --prio-low-bg: rgba(34, 197, 94, 0.25);
+  --prio-low-text: #ffffff;
+  --prio-low-dot: #ffffff;
+
+  /* Due Date */
+  --due-overdue-bg: rgba(239, 68, 68, 0.32);
+  --due-overdue-text: #ffffff;
+  --due-today-bg: rgba(249, 115, 22, 0.32);
+  --due-today-text: #ffffff;
+  --due-future-bg: rgba(255, 255, 255, 0.08);
+  --due-future-text: #ffffff;
+
+  --backdrop-bg: rgba(4, 7, 13, 0.55);
+}
+
+/* Dim Overcast Cool Daylight Theme */
+[data-theme="light"] {
+  --bg-app: #10141d;
+  --bg-gradient: transparent;
+
+  /* Pure Clear Glass */
+  --bg-surface: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 35%, rgba(255, 255, 255, 0.00) 65%, rgba(255, 255, 255, 0.08) 100%);
+  --bg-surface-elevated: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.05) 35%, rgba(255, 255, 255, 0.01) 65%, rgba(255, 255, 255, 0.12) 100%);
+  --bg-surface-subtle: rgba(255, 255, 255, 0.03);
+  --bg-surface-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.08) 35%, rgba(255, 255, 255, 0.02) 65%, rgba(255, 255, 255, 0.16) 100%);
+
+  --border: rgba(255, 255, 255, 0.65);
+  --border-focus: rgba(255, 255, 255, 0.95);
+  --border-subtle: rgba(255, 255, 255, 0.40);
+
+  --text-main: #ffffff;
+  --text-muted: #ffffff;
+  --text-subtle: rgba(255, 255, 255, 0.88);
+
+  --primary: #ffffff;
+  --primary-hover: #ffffff;
+  --primary-light: rgba(255, 255, 255, 0.2);
+  --primary-glow: rgba(255, 255, 255, 0.5);
+
+  --cat-college-bg: rgba(168, 85, 247, 0.20);
+  --cat-college-text: #ffffff;
+  --cat-college-border: rgba(255, 255, 255, 0.65);
+
+  --cat-work-bg: rgba(14, 165, 233, 0.20);
+  --cat-work-text: #ffffff;
+  --cat-work-border: rgba(255, 255, 255, 0.65);
+
+  --cat-personal-bg: rgba(16, 185, 129, 0.20);
+  --cat-personal-text: #ffffff;
+  --cat-personal-border: rgba(255, 255, 255, 0.65);
+
+  --prio-high-bg: rgba(239, 68, 68, 0.28);
+  --prio-high-text: #ffffff;
+  --prio-high-dot: #ffffff;
+
+  --prio-med-bg: rgba(245, 158, 11, 0.28);
+  --prio-med-text: #ffffff;
+  --prio-med-dot: #ffffff;
+
+  --prio-low-bg: rgba(34, 197, 94, 0.28);
+  --prio-low-text: #ffffff;
+  --prio-low-dot: #ffffff;
+
+  --due-overdue-bg: rgba(239, 68, 68, 0.34);
+  --due-overdue-text: #ffffff;
+  --due-today-bg: rgba(249, 115, 22, 0.34);
+  --due-today-text: #ffffff;
+  --due-future-bg: rgba(255, 255, 255, 0.12);
+  --due-future-text: #ffffff;
+
+  --backdrop-bg: rgba(8, 13, 24, 0.50);
+}
+
+/* Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  overflow-x: hidden;
+}
+
+input, button, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ==========================================================================
+   Dim Rain on Window Glass Background Layers
+   ========================================================================== */
+.animated-bg-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background-color: var(--bg-app);
+}
+
+/* Atmospheric Rainy Window Photograph Backdrop */
+.dim-rain-window-photo {
+  position: absolute;
+  inset: 0;
+  background-image: url('/rain-window.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.68) contrast(1.22) saturate(0.85);
+  transform: scale(1.02);
+}
+
+[data-theme="light"] .dim-rain-window-photo {
+  filter: brightness(0.76) contrast(1.18) saturate(0.85);
+}
+
+/* Atmospheric Overcast Neutral Overlay - Zero blue tint, high text contrast */
+.dim-moody-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.72) 100%);
+  pointer-events: none;
+}
+
+[data-theme="light"] .dim-moody-overlay {
+  background: radial-gradient(circle at 50% 30%, rgba(0, 0, 0, 0.28) 0%, rgba(0, 0, 0, 0.62) 100%);
+}
+
+.ambient-rain-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.ambient-glass-vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 110px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+/* Container */
+.app-container {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 2.25rem 1.25rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.65rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   Header Section (Apple VisionOS Glass Header)
+   ========================================================================== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.brand-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.70);
+  box-shadow: var(--glass-shine), 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: transform var(--transition-fast);
+}
+
+.brand-icon-wrapper:hover {
+  transform: translateY(-2px) scale(1.04);
+}
+
+.brand-title-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.brand-badge-pro {
+  font-size: 0.65rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  vertical-align: middle;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: var(--glass-shine);
+}
+
+.brand-subtitle {
+  font-size: 0.825rem;
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+/* 100% Clear Glass Capsule Buttons (Zero Blue/Grey Fog - Pure Clear Crystal Glass) */
+.action-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  height: 38px;
+  padding: 0 1.2rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.09) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  color: #ffffff !important;
+  font-size: 0.825rem;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.80), inset 0 -1px 1px 0 rgba(255, 255, 255, 0.2), 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 140ms ease, background-color 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.action-icon-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.18) 100%);
+  border-color: #ffffff;
+  transform: translateY(-1.5px) scale(1.02);
+  box-shadow: inset 0 1.5px 2px #ffffff, 0 8px 24px rgba(0, 0, 0, 0.3);
+  color: #ffffff !important;
+}
+
+.action-icon-btn:active {
+  transform: scale(0.96);
+}
+
+/* Live Task Summary Badge (100% Clear Glass Capsule) */
+.live-summary-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 1.15rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.09) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-full);
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.80), inset 0 -1px 1px 0 rgba(255, 255, 255, 0.2), 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.pulse-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.8);
+  animation: pulse-blue 2s infinite;
+}
+
+.pulse-indicator.all-done {
+  background: #ffffff;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8);
+}
+
+@keyframes pulse-blue {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.8); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(56, 189, 248, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+}
+
+/* ==========================================================================
+   Progress & Stats Banner (100% Crystal Clear Glass - Rain 100% Visible)
+   ========================================================================== */
+.stats-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.02) 35%, rgba(255, 255, 255, 0.00) 65%, rgba(255, 255, 255, 0.06) 100%);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1.5px solid rgba(255, 255, 255, 0.60);
+  border-radius: var(--radius-xl);
+  padding: 1.45rem 1.75rem;
+  box-shadow: var(--glass-shadow), var(--glass-shine);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stats-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.stats-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.stats-label {
+  font-size: 0.775rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.stats-headline {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.stats-percent {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8 0%, #ffffff 100%);
+  border-radius: var(--radius-full);
+  transition: width 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+}
+
+.stats-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  padding-top: 0.15rem;
+}
+
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.9rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-full);
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--glass-shine), 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.stat-pill-num {
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.stat-pill.pill-overdue {
+  background: var(--due-overdue-bg);
+  border-color: rgba(255, 255, 255, 0.75);
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   100% Crystal Clear Glass Task Creation Form & Buttons (Zero Blue/Grey Fog)
+   ========================================================================== */
+.creation-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.02) 35%, rgba(255, 255, 255, 0.00) 65%, rgba(255, 255, 255, 0.06) 100%);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1.5px solid rgba(255, 255, 255, 0.60);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--glass-shadow), var(--glass-shine);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.creation-card:focus-within {
+  border-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.4), var(--glass-shine);
+}
+
+.creation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+/* 100% Clear Glass Input Capsule (Zero Grey - Pure Clear Liquid Glass) */
+.task-input {
+  width: 100%;
+  padding: 0.95rem 1.45rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-full);
+  color: #ffffff !important;
+  outline: none;
+  transition: border-color 140ms ease, background-color 140ms ease, box-shadow 140ms ease;
+  box-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.6), 0 4px 14px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.task-input:focus {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.16) 100%);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35), inset 0 1.5px 2px #ffffff;
+}
+
+.task-input::placeholder {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.form-expand-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.25rem;
+  animation: fadeIn 150ms ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.task-desc-input {
+  width: 100%;
+  padding: 0.85rem 1.3rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-lg);
+  color: #ffffff !important;
+  outline: none;
+  resize: vertical;
+  min-height: 60px;
+  box-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.5), 0 4px 14px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.form-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.form-dropdowns {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+/* 100% Clear Glass Capsule Dropdowns (Zero Grey) */
+.dropdown-group {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-full);
+  padding: 0.52rem 1.15rem;
+  color: #ffffff !important;
+  font-size: 0.825rem;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1.5px 1.5px rgba(255, 255, 255, 0.75), 0 4px 14px rgba(0, 0, 0, 0.18);
+  transition: transform 140ms ease, background-color 140ms ease, border-color 140ms ease;
+}
+
+.dropdown-group:hover, .dropdown-group:focus-within {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.16) 100%);
+  border-color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.form-select, .form-date-input {
+  background: transparent;
+  border: none;
+  color: #ffffff !important;
+  font-size: 0.825rem;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.form-select option {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.btn-toggle-more {
+  font-size: 0.825rem;
+  color: #ffffff !important;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1.5px 1.5px rgba(255, 255, 255, 0.75), 0 4px 14px rgba(0, 0, 0, 0.18);
+  transition: transform 140ms ease, background-color 140ms ease, border-color 140ms ease;
+}
+
+.btn-toggle-more:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.16) 100%);
+  border-color: #ffffff;
+  transform: translateY(-1px);
+  color: #ffffff !important;
+}
+
+/* 100% Clear Glass "+ Add Task" Capsule Button (Zero Grey - Pure Clear Liquid Glass) */
+.btn-add-task {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.72rem 1.85rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.04) 50%, rgba(255, 255, 255, 0.12) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.80);
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 14px rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.9), inset 0 -1.5px 2px rgba(255, 255, 255, 0.25), 0 8px 24px rgba(0, 0, 0, 0.25);
+  transition: transform 140ms ease, background-color 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+  margin-left: auto;
+}
+
+.btn-add-task:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.10) 50%, rgba(255, 255, 255, 0.22) 100%);
+  border-color: #ffffff;
+  transform: translateY(-1.5px) scale(1.03);
+  box-shadow: inset 0 1.5px 2px #ffffff, 0 10px 28px rgba(0, 0, 0, 0.35);
+  color: #ffffff !important;
+}
+
+.btn-add-task:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn-add-task:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+/* ==========================================================================
+   Toolbar: Search, Filters & View Toggle (Apple Frosted Glass Controls)
+   ========================================================================== */
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.toolbar-primary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.search-and-view {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.search-input-wrapper {
+  flex: 1;
+  min-width: 260px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.05rem;
+  color: rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.7rem 2.2rem 0.7rem 2.8rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-full);
+  color: #ffffff !important;
+  outline: none;
+  box-shadow: inset 0 1.5px 1.5px rgba(255, 255, 255, 0.60), 0 4px 14px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  transition: all var(--transition-fast);
+}
+
+.search-input:focus {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.16) 100%);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35), inset 0 1.5px 2px #ffffff;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 0.9rem;
+  color: #ffffff;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-clear-btn:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* Apple Segmented Controls (Track & Active Capsule) */
+.view-mode-tabs {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  padding: 0.25rem;
+  border-radius: var(--radius-full);
+  gap: 0.25rem;
+  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.4);
+}
+
+.view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.48rem 1.05rem;
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.view-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff !important;
+}
+
+.view-btn.active {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.10) 50%, rgba(255, 255, 255, 0.20) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  color: #ffffff !important;
+  border: 1.5px solid #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2), inset 0 1.5px 2px #ffffff;
+}
+
+.sort-select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-full);
+  padding: 0.52rem 1.1rem;
+  color: #ffffff !important;
+  font-size: 0.825rem;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 1.5px 1.5px rgba(255, 255, 255, 0.65);
+}
+
+.sort-select {
+  background: transparent;
+  border: none;
+  color: #ffffff !important;
+  font-size: 0.825rem;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.sort-select option {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+/* Filter Row */
+.filter-tabs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.tabs-group {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  padding: 0.25rem;
+  border-radius: var(--radius-full);
+  gap: 0.2rem;
+  overflow-x: auto;
+  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.4);
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.42rem 0.95rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.tab-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff !important;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.10) 50%, rgba(255, 255, 255, 0.20) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  color: #ffffff !important;
+  border: 1.5px solid #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2), inset 0 1.5px 2px #ffffff;
+}
+
+.tab-count {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.20);
+  color: #ffffff !important;
+}
+
+.tab-btn.active .tab-count {
+  background: rgba(255, 255, 255, 0.35);
+  color: #ffffff !important;
+}
+
+.category-filter-chips {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+/* 100% Clear Glass Capsule Chips (Zero Grey) */
+.cat-chip {
+  padding: 0.42rem 0.95rem;
+  border-radius: var(--radius-full);
+  font-size: 0.775rem;
+  font-weight: 700;
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: inset 0 1.5px 1.5px rgba(255, 255, 255, 0.65);
+}
+
+.cat-chip:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.16) 100%);
+  border-color: #ffffff;
+  color: #ffffff !important;
+}
+
+.cat-chip.active {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.22) 100%);
+  border-color: #ffffff;
+  color: #ffffff !important;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.3), inset 0 1.5px 2px #ffffff;
+}
+
+/* ==========================================================================
+   List View: Apple Frosted Glass Task Cards (matching Image 2)
+   ========================================================================== */
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.task-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-surface);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.55rem;
+  box-shadow: var(--glass-shadow), var(--glass-shine);
+  transition: all var(--transition-normal);
+  position: relative;
+  gap: 0.75rem;
+  animation: slideIn 180ms ease-out forwards;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.task-card:hover {
+  background: var(--bg-surface-elevated);
+  border-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.4), var(--glass-shine);
+  transform: translateY(-2px);
+}
+
+.task-card.completed {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border-color: rgba(255, 255, 255, 0.35);
+  opacity: 0.78;
+}
+
+.task-card.completed:hover {
+  opacity: 0.95;
+}
+
+.task-main-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.select-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #ffffff;
+  margin-top: 4px;
+  border-radius: 6px;
+}
+
+/* 100% Clear Glass Circular Checkbox (Zero Grey) */
+.checkbox-btn {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.80);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+  transition: all var(--transition-fast);
+  margin-top: 1px;
+  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.75);
+}
+
+.checkbox-btn:hover {
+  border-color: #ffffff;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.08) 100%);
+  transform: scale(1.12);
+}
+
+.checkbox-btn.checked {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 2px 14px rgba(255, 255, 255, 0.8), inset 0 1px 1.5px rgba(255, 255, 255, 0.95);
+}
+
+.task-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.task-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #ffffff;
+  word-break: break-word;
+  line-height: 1.4;
+  cursor: pointer;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.task-card.completed .task-title {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.task-description-preview {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.90);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.task-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+/* Translucent Glass Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-full);
+  font-size: 0.725rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  backdrop-filter: var(--glass-blur-sm);
+  box-shadow: var(--glass-shine);
+}
+
+.badge-category-college {
+  background: var(--cat-college-bg);
+  color: var(--cat-college-text);
+  border: 1px solid var(--cat-college-border);
+}
+
+.badge-category-work {
+  background: var(--cat-work-bg);
+  color: var(--cat-work-text);
+  border: 1px solid var(--cat-work-border);
+}
+
+.badge-category-personal {
+  background: var(--cat-personal-bg);
+  color: var(--cat-personal-text);
+  border: 1px solid var(--cat-personal-border);
+}
+
+.badge-priority-high {
+  background: var(--prio-high-bg);
+  color: var(--prio-high-text);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.badge-priority-medium {
+  background: var(--prio-med-bg);
+  color: var(--prio-med-text);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.badge-priority-low {
+  background: var(--prio-low-bg);
+  color: var(--prio-low-text);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.priority-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.badge-due-overdue {
+  background: var(--due-overdue-bg);
+  color: var(--due-overdue-text);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  font-weight: 700;
+}
+
+.badge-due-today {
+  background: var(--due-today-bg);
+  color: var(--due-today-text);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  font-weight: 700;
+}
+
+.badge-due-future {
+  background: var(--due-future-bg);
+  color: var(--due-future-text);
+  border: 1px solid var(--border-subtle);
+}
+
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.22rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+  font-size: 0.725rem;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tag-badge:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #ffffff;
+}
+
+.task-date {
+  font-size: 0.725rem;
+  color: rgba(255, 255, 255, 0.85);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Circular Apple Glass Action Buttons */
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.btn-card-action {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.75);
+  transition: all var(--transition-fast);
+}
+
+.btn-card-action:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.08) 100%);
+  border-color: #ffffff;
+  transform: scale(1.1);
+  color: #ffffff !important;
+}
+
+.btn-card-action.btn-delete:hover {
+  background: rgba(239, 68, 68, 0.45);
+  border-color: #ffffff;
+}
+
+.subtasks-progress-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.60);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.65);
+  transition: all var(--transition-fast);
+}
+
+.subtasks-progress-pill:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.08) 100%);
+  border-color: #ffffff;
+}
+
+.subtasks-expanded-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.85rem 1.15rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.50);
+  border-radius: var(--radius-md);
+  margin-left: 2.2rem;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.subtask-inline-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.825rem;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.subtask-inline-item.completed {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ==========================================================================
+   Kanban Board View (Apple Glass Columns)
+   ========================================================================== */
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.kanban-column {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(255, 255, 255, 0.00) 70%, rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1.5px solid rgba(255, 255, 255, 0.60);
+  border-radius: var(--radius-xl);
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  min-height: 480px;
+  box-shadow: var(--glass-shadow), var(--glass-shine);
+}
+
+.kanban-column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.kanban-column-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.kanban-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.18rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.20);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: #ffffff;
+}
+
+.kanban-tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.kanban-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), var(--glass-shine);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.kanban-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.16) 100%);
+  border-color: #ffffff;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3), var(--glass-shine);
+  transform: translateY(-2px);
+}
+
+.kanban-card-title {
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.35;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.kanban-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-move-status {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  box-shadow: var(--glass-shine);
+  transition: all var(--transition-fast);
+}
+
+.btn-move-status:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.08) 100%);
+  border-color: #ffffff;
+}
+
+/* ==========================================================================
+   Apple Dynamic Island Floating Bulk Actions Bar
+   ========================================================================== */
+.bulk-actions-bar {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(12, 16, 24, 0.75) 50%, rgba(255, 255, 255, 0.10) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.70);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.5), var(--glass-shine);
+  border-radius: var(--radius-full);
+  padding: 0.65rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  animation: slideUp 200ms ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translate(-50%, 20px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+.bulk-count {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #38bdf8;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.bulk-btns {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-bulk {
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: var(--glass-shine);
+}
+
+.btn-bulk:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.08) 100%);
+  border-color: #ffffff;
+}
+
+.btn-bulk.btn-bulk-delete:hover {
+  background: rgba(239, 68, 68, 0.55);
+  border-color: #ffffff;
+}
+
+/* ==========================================================================
+   Modals (Apple Frosted Glass Sheet)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 7, 13, 0.60);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  animation: fadeIn 150ms ease-out;
+}
+
+.modal-dialog {
+  background: linear-gradient(135deg, rgba(20, 24, 32, 0.90) 0%, rgba(10, 12, 18, 0.94) 100%);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 620px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.55), var(--glass-shine);
+  display: flex;
+  flex-direction: column;
+  animation: modalScale 200ms ease-out;
+}
+
+@keyframes modalScale {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.35rem 1.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.modal-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.modal-close-btn {
+  color: #ffffff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.52);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #ffffff;
+}
+
+.modal-body {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1.25rem 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.90);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.modal-input, .modal-textarea {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  border-radius: var(--radius-md);
+  color: #ffffff;
+  outline: none;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.modal-input:focus, .modal-textarea:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3.5px rgba(255, 255, 255, 0.25);
+}
+
+.modal-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.subtask-editor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.subtask-editor-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-remove-subtask {
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.3rem;
+}
+
+.btn-remove-subtask:hover {
+  color: #ef4444;
+}
+
+/* Analytics modal widgets */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.analytics-widget {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: var(--glass-shine);
+}
+
+.widget-num {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.widget-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.90);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  background: var(--bg-surface);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1.5px dashed rgba(255, 255, 255, 0.60);
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: var(--glass-shadow);
+}
+
+.empty-icon-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.empty-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.empty-subtitle {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 360px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.btn-reset-filters {
+  margin-top: 0.5rem;
+  padding: 0.55rem 1.35rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.75), 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: all var(--transition-fast);
+}
+
+.btn-reset-filters:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.08) 100%);
+  border-color: #ffffff;
+}
+
+/* Error Banner */
+.error-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: rgba(239, 68, 68, 0.35);
+  backdrop-filter: var(--glass-blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.error-banner button {
+  text-decoration: underline;
+  font-weight: 700;
+  color: inherit;
+}
+
+/* Notification Toast */
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.35rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(12, 16, 24, 0.85) 50%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1.5px solid rgba(255, 255, 255, 0.70);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), var(--glass-shine);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  animation: toastIn 200ms ease-out;
+}
+
+@keyframes toastIn {
+  from { transform: translateY(12px) scale(0.95); opacity: 0; }
+  to { transform: translateY(0) scale(1); }
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 900px) {
+  .kanban-board {
+    grid-template-columns: 1fr;
+  }
+  .kanban-column {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-container {
+    padding: 1.25rem 0.85rem 4rem;
+    gap: 1.25rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .modal-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bulk-actions-bar {
+    width: 92%;
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    gap: 0.5rem;
+  }
+
+  .toolbar-primary {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-and-view {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .view-mode-tabs {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .view-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
