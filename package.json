@@ -1,15 +1,24 @@
 {
-  "name": "tasksprint-backend",
+  "name": "tasksprint-app",
   "version": "1.0.0",
-  "description": "Express REST API backend for TaskSprint",
-  "main": "server.js",
-  "type": "module",
+  "private": true,
+  "description": "TaskSprint PRO - Full-Stack Task Management Application (React Frontend + Express Backend)",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js"
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "start:backend": "npm --prefix backend start",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "preview:frontend": "npm --prefix frontend run preview"
   },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.21.2"
-  }
+  "keywords": [
+    "tasksprint",
+    "react",
+    "vite",
+    "express",
+    "rest-api",
+    "task-management"
+  ],
+  "author": "",
+  "license": "MIT"
 }
