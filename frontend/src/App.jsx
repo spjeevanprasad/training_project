@@ -39,7 +39,8 @@ import {
 import confetti from 'canvas-confetti';
 import AnimatedBackground from './components/AnimatedBackground.jsx';
 
-const API_BASE = '/api/tasks';
+const API_ROOT = import.meta.env.VITE_API_URL || '/api';
+const API_BASE = `${API_ROOT}/tasks`;
 
 // Pleasant acoustic notification chime with Web Audio API
 function playChime(enabled) {
@@ -552,7 +553,7 @@ export default function App() {
     if (ids.length === 0) return;
 
     try {
-      const res = await fetch('/api/tasks/bulk', {
+      const res = await fetch(`${API_ROOT}/tasks/bulk`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action, ids })
@@ -575,7 +576,7 @@ export default function App() {
   const handleClearCompleted = async () => {
     if (!window.confirm('Clear all completed tasks from your sprint?')) return;
     try {
-      const res = await fetch('/api/tasks-bulk/completed', { method: 'DELETE' });
+      const res = await fetch(`${API_ROOT}/tasks-bulk/completed`, { method: 'DELETE' });
       if (!res.ok) throw new Error('Clear failed');
       setTasks((prev) => prev.filter((t) => !t.completed));
       showToast('Cleared completed tasks');
@@ -607,7 +608,7 @@ export default function App() {
         const parsed = JSON.parse(event.target.result);
         if (!Array.isArray(parsed)) throw new Error('JSON is not an array of tasks');
 
-        const res = await fetch('/api/import', {
+        const res = await fetch(`${API_ROOT}/import`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ importedTasks: parsed })
@@ -627,7 +628,7 @@ export default function App() {
   const handleResetDemo = async () => {
     if (!window.confirm('Reset board back to sample sprint tasks?')) return;
     try {
-      const res = await fetch('/api/reset', { method: 'POST' });
+      const res = await fetch(`${API_ROOT}/reset`, { method: 'POST' });
       const data = await res.json();
       setTasks(data.tasks || []);
       showToast('Reset to demo sprint data');
