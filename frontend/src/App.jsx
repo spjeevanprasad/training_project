@@ -34,14 +34,15 @@ import {
   Square,
   MoreHorizontal,
   RotateCcw,
-  CloudRain
+  CloudRain,
+  Orbit
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import AnimatedBackground from './components/AnimatedBackground.jsx';
 
 const API_BASE = '/api/tasks';
 
-// Synthesize pleasant completion chime with Web Audio API
+// Synthesize futuristic cyber-resonant chime with Web Audio API
 function playChime(enabled) {
   if (!enabled) return;
   try {
@@ -51,30 +52,44 @@ function playChime(enabled) {
 
     const osc1 = ctx.createOscillator();
     const osc2 = ctx.createOscillator();
+    const oscSub = ctx.createOscillator();
     const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(1400, ctx.currentTime);
+    filter.Q.setValueAtTime(4, ctx.currentTime);
 
     osc1.type = 'sine';
-    osc1.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
-    osc1.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15); // A5
+    osc1.frequency.setValueAtTime(523.25, ctx.currentTime);
+    osc1.frequency.exponentialRampToValueAtTime(1046.5, ctx.currentTime + 0.12);
+    osc1.frequency.exponentialRampToValueAtTime(1567.98, ctx.currentTime + 0.28);
 
     osc2.type = 'triangle';
-    osc2.frequency.setValueAtTime(880, ctx.currentTime);
-    osc2.frequency.exponentialRampToValueAtTime(1174.66, ctx.currentTime + 0.15); // D6
+    osc2.frequency.setValueAtTime(1046.5, ctx.currentTime);
+    osc2.frequency.exponentialRampToValueAtTime(2093, ctx.currentTime + 0.15);
 
-    gain.gain.setValueAtTime(0.12, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+    oscSub.type = 'sine';
+    oscSub.frequency.setValueAtTime(261.63, ctx.currentTime);
+    oscSub.frequency.exponentialRampToValueAtTime(523.25, ctx.currentTime + 0.2);
 
-    osc1.connect(gain);
-    osc2.connect(gain);
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.18, ctx.currentTime + 0.08);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
+
+    osc1.connect(filter);
+    osc2.connect(filter);
+    oscSub.connect(gain);
+    filter.connect(gain);
     gain.connect(ctx.destination);
 
     osc1.start();
     osc2.start();
-    osc1.stop(ctx.currentTime + 0.4);
-    osc2.stop(ctx.currentTime + 0.4);
-  } catch (e) {
-    // audio context might be restricted before interaction
-  }
+    oscSub.start();
+    osc1.stop(ctx.currentTime + 0.45);
+    osc2.stop(ctx.currentTime + 0.45);
+    oscSub.stop(ctx.currentTime + 0.45);
+  } catch (e) {}
 }
 
 export default function App() {
@@ -105,7 +120,7 @@ export default function App() {
 
   // Background Mode: 'wave' | 'hyperspace'
   const [bgMode, setBgMode] = useState(() => {
-    return localStorage.getItem('tasksprint_bgmode') || 'wave';
+    return localStorage.getItem('tasksprint_bgmode') || 'quantum';
   });
 
   // New task form state
@@ -408,7 +423,7 @@ export default function App() {
       const remainingPending = tasks.filter((t) => t.id !== task.id && !t.completed).length;
       if (remainingPending === 0) {
         try {
-          confetti({ particleCount: 90, spread: 80, origin: { y: 0.6 } });
+          confetti({ particleCount: 110, spread: 90, origin: { y: 0.6 }, colors: ['#00f5d4', '#00e5ff', '#a855f7', '#d946ef', '#ffffff', '#38bdf8'] });
         } catch (e) {}
       }
     }
@@ -688,14 +703,19 @@ export default function App() {
         <header className="header">
           <div className="brand">
             <div className="brand-icon-wrapper">
-              <Zap size={25} />
+              <div className="brand-icon-pulse-ring" />
+              <Zap size={24} className="brand-icon-svg" />
             </div>
             <div className="brand-title-wrap">
               <div className="brand-title">
-                <span>TaskSprint</span>
-                <span className="brand-badge-pro">PRO</span>
+                <span>TASKSPRINT</span>
+                <span className="brand-badge-pro">QUANTUM // HUD</span>
               </div>
-              <span className="brand-subtitle">High-velocity full-stack sprint workspace</span>
+              <span className="brand-subtitle">
+                <span className="hud-sys-tag">SYS.CORE // v4.2</span>
+                <span className="hud-sep">·</span>
+                <span>NEURAL SPRINT ENGINE</span>
+              </span>
             </div>
           </div>
 
@@ -708,19 +728,27 @@ export default function App() {
               </span>
             </div>
 
-            {/* Rain Atmospheric Effect Toggle */}
+            {/* Futuristic Quantum / Warp Effect Cycle Toggle */}
             <button
               onClick={() => {
-                const nextState = !motionActive;
-                setMotionActive(nextState);
-                showToast(nextState ? 'Atmospheric Rain Active 🌧️' : 'Rain Paused');
+                if (!motionActive) {
+                  setMotionActive(true);
+                  setBgMode('quantum');
+                  showToast('Quantum Neural Grid Activated ⚡');
+                } else if (bgMode === 'quantum') {
+                  setBgMode('warp');
+                  showToast('Hyperspace Warp Drive Engaged 🚀');
+                } else {
+                  setMotionActive(false);
+                  showToast('Background FX Suspended ⏸️');
+                }
               }}
-              className="action-icon-btn"
-              title={motionActive ? 'Atmospheric rain: Active (Click to pause)' : 'Atmospheric rain: Paused'}
-              aria-label="Toggle Rain Effect"
+              className={`action-icon-btn ${motionActive ? 'active-hud-btn' : ''}`}
+              title="Cycle Background: Quantum Matrix / Hyperspace Warp / Offline"
+              aria-label="Toggle Quantum Background Effect"
             >
-              <CloudRain size={16} color={motionActive ? '#38bdf8' : undefined} />
-              <span>{motionActive ? 'Rain 🌧️' : 'Dry'}</span>
+              <Orbit size={16} className={motionActive ? 'spin-slow' : ''} color={motionActive ? '#00f5d4' : undefined} />
+              <span>{motionActive ? (bgMode === 'warp' ? 'Warp 🚀' : 'Quantum ⚡') : 'FX Off'}</span>
             </button>
 
             {/* Sound Toggle */}
@@ -848,7 +876,7 @@ export default function App() {
               ref={taskInputRef}
               type="text"
               className="task-input"
-              placeholder="What needs to get done? Type task name and press Enter... (Shortcut: N)"
+              placeholder="INITIALIZE SPRINT TICKET [PRESS ENTER]... (Shortcut: N)"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               disabled={isSubmitting}
@@ -868,7 +896,7 @@ export default function App() {
             <div className="form-expand-details">
               <textarea
                 className="task-desc-input"
-                placeholder="Optional notes or description (e.g. key specs, links, context)..."
+                placeholder="Optional neural telemetry, acceptance criteria, or parameters..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />

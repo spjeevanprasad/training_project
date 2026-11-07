@@ -1,41 +1,58 @@
-# TaskSprint PRO 🌧️ — Dim Rainy Window & Transparent Glass UI
+# TaskSprint // QUANTUM HUD ⚡ — Futuristic Cyber-Velocity Task Command
 
-TaskSprint PRO is a full-stack sprint task management application featuring a **Node.js + Express** REST API backend and a **React 18 + Vite** frontend. The UI delivers an atmospheric rainy day aesthetic with an interactive rain-on-glass physics canvas and glassmorphic controls.
+TaskSprint is a high-velocity full-stack sprint task management application featuring a **Node.js + Express** REST API backend and a **React 18 + Vite** frontend. Built with an ultra-sleek, professional sci-fi HUD aesthetic, an interactive **Quantum Neural Grid physics canvas**, tactile sound synthesis, and real-time sprint velocity analytics.
+
+---
+
+## 🌌 Futuristic Features & Cyber Aesthetics
+
+1. **Interactive Quantum Physics Engine (`AnimatedBackground.jsx`)**:
+   - **Quantum Particle Nodes**: Floating luminous energy particles that dynamically drift, pulse, and interact.
+   - **Neural Laser Filaments**: Proximity-based dynamic laser filaments with gradient neon coloring connecting nodes in real time.
+   - **Mouse Gravitational Warp**: The cursor generates a local holographic gravity field that pulls and connects nearby nodes with energetic electric arcs.
+   - **Kinetic Quantum Shockwaves**: Clicking anywhere generates resonant holographic shockwaves that physically disperse surrounding particles.
+   - **Perspective Cyber Grid & Radar Scanner**: Smooth downward radar laser beam and a 3D perspective cyber grid along the horizon.
+   - **Multi-Mode Selector**: Cycle between **Quantum Grid ⚡**, **Hyperspace Warp 🚀**, and **FX Off ⏸️** right from the header.
+
+2. **Professional Aerospace Cyber-HUD UI**:
+   - **Typography**: Google Fonts pairing of **Orbitron**, **Space Grotesk**, and **JetBrains Mono** for crisp telemetry and high-tech typography.
+   - **Holographic Glassmorphism**: Translucent obsidian surfaces with tactical corner brackets, glowing neon laser borders, and animated border sweeps.
+   - **Pulsing Telemetry Badges**: Live sprint velocity radar beacons, tactical priority hazard badges (`High`, `Medium`, `Low`), and category chips (`College`, `Work`, `Personal`).
+   - **Tactile Audio Feedback**: Synthesized Web Audio API harmonics with dual-oscillator resonant cyber-chime on task completions.
+   - **Neon Confetti**: Particle explosions on sprint completion with cyber cyan, magenta, aqua, and electric violet colorways.
 
 ---
 
 ## 📁 Project Architecture
 
-The project is structured into modular `frontend` and `backend` directories:
+The workspace is organized into modular `frontend` and `backend` packages:
 
 ```
 training_project/
-├── backend/                  # Node.js + Express REST API
-│   ├── package.json          # Backend dependencies (express, cors)
-│   ├── server.js             # Express API server with task management & analytics
-│   └── tasks.json            # Persistent JSON file storage for tasks
+├── backend/                       # Node.js + Express REST API
+│   ├── package.json               # Backend dependencies (express, cors)
+│   ├── server.js                  # Express API server & telemetry endpoints
+│   └── tasks.json                 # Persistent JSON data store
 │
-├── frontend/                 # React + Vite Client Application
-│   ├── public/
-│   │   └── rain-window.jpg   # High-resolution rainy window background
+├── frontend/                      # React 18 + Vite Client Application
 │   ├── src/
 │   │   ├── components/
-│   │   │   └── AnimatedBackground.jsx  # HTML5 Canvas rain & glass ripple physics engine
-│   │   ├── App.jsx           # Main TaskSprint dashboard & interaction logic
-│   │   ├── index.css         # VisionOS / iOS 18 glassmorphic styling
-│   │   └── main.jsx          # React DOM entrypoint
-│   ├── index.html            # Vite HTML template
-│   ├── vite.config.js        # Vite config with backend proxy (/api -> http://localhost:5000)
-│   └── package.json          # Frontend dependencies (react, lucide-react, canvas-confetti, vite)
+│   │   │   └── AnimatedBackground.jsx  # Quantum particle & laser physics canvas
+│   │   ├── App.jsx                # Main HUD dashboard & task management
+│   │   ├── index.css              # Cyber-HUD & Quantum Glass design system
+│   │   └── main.jsx               # React DOM entry point
+│   ├── index.html                 # Vite HTML template with Orbitron/Space Grotesk
+│   ├── vite.config.js             # Vite proxy (/api -> http://localhost:5000)
+│   └── package.json               # Frontend dependencies (react, lucide-react, etc.)
 │
-├── .gitignore                # Excludes node_modules, dist, and environment files from Git
-├── package.json              # Root workspace convenience scripts
-└── README.md                 # Complete documentation and setup guide
+├── .gitignore                     # Excludes node_modules, dist, and environment files
+├── package.json                   # Root workspace scripts to run both apps
+└── README.md                      # Documentation & instructions
 ```
 
 ---
 
-## ⚡ Quick Start
+## ⚡ Execution Guide
 
 ### Prerequisites
 - **Node.js**: v18.0.0 or higher
@@ -45,74 +62,45 @@ training_project/
 
 ### Option 1: Run from Root Directory
 
-From the project root folder (`training_project/`):
+From `training_project/`:
 
-1. **Install all dependencies** (installs both backend & frontend):
+1. **Install dependencies** (if not already installed):
    ```bash
    npm run install:all
    ```
 
-2. **Start Backend Server** (Port `5000`):
+2. **Launch Backend Server** (Port `5000`):
    ```bash
    npm run start:backend
    ```
-   *(Or for watch mode: `npm run dev:backend`)*
+   *(Or with auto-restart: `npm run dev:backend`)*
 
-3. **Start Frontend Dev Server** (in a separate terminal, Port `3000`):
+3. **Launch Frontend Dev Server** (in a second terminal, Port `3000`):
    ```bash
    npm run dev:frontend
    ```
 
-4. Open your browser and navigate to:
-   - **Frontend App**: [http://localhost:3000](http://localhost:3000)
+4. Open in browser:
+   - **HUD App**: [http://localhost:3000](http://localhost:3000)
    - **Backend API**: [http://localhost:5000/api/tasks](http://localhost:5000/api/tasks)
 
 ---
 
-### Option 2: Run Frontend & Backend Independently
+### Option 2: Run Separately
 
-#### 1. Backend (`/backend`)
+#### Backend (`/backend`)
 ```bash
 cd backend
 npm install
 npm start
 ```
-> The Express server starts on `http://localhost:5000` and automatically persists task changes to `tasks.json`.
 
-#### 2. Frontend (`/frontend`)
+#### Frontend (`/frontend`)
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-> The Vite dev server starts on `http://localhost:3000` and proxies all `/api/*` calls directly to `http://localhost:5000`.
-
-To build the frontend for production:
-```bash
-cd frontend
-npm run build
-npm run preview
-```
-
----
-
-## 🌧️ Core Features & Capabilities
-
-1. **Atmospheric Canvas Physics Engine**:
-   - High-speed diagonal rain streaks cutting through the foggy skyline.
-   - Glass impact ripples expanding when raindrops hit the pane.
-   - Condensation beads with lens gleam and drop shadows.
-   - Toggle rainfall animation on/off with the **"Rain / Dry"** header pill.
-
-2. **Full-Featured Sprint Task Management**:
-   - **Categories**: `College`, `Work`, `Personal`.
-   - **Priorities**: `High`, `Medium`, `Low` with color-coded badges.
-   - **Statuses**: `todo`, `in-progress`, `completed`.
-   - **Subtasks**: Checkable subtask checklists with live completion progress.
-   - **Tags & Due Dates**: Overdue detection, sorting, and tag filtering.
-   - **Bulk Actions**: Batch delete, mark complete/incomplete, or assign priorities.
-   - **Data Portability**: Full JSON export and import capabilities.
-   - **Sound & Haptics**: Synthesized Web Audio chime and canvas confetti on completion.
 
 ---
 
@@ -120,41 +108,27 @@ npm run preview
 
 | Method | Endpoint | Description |
 |---|---|---|
-| `GET` | `/api/health` | Service health status, uptime, and task count |
-| `GET` | `/api/analytics` | Completion rates, overdue counts, and category breakdown |
-| `GET` | `/api/tasks` | Get all tasks (supports `?category=`, `?priority=`, `?search=`, `?sort=`) |
+| `GET` | `/api/health` | System health check, uptime, and task count |
+| `GET` | `/api/analytics` | Completion rates, overdue counts, and category statistics |
+| `GET` | `/api/tasks` | Retrieve all tasks (supports `?category=`, `?priority=`, `?search=`, `?sort=`) |
 | `POST` | `/api/tasks` | Create a new task (body: `title`, `description`, `category`, `priority`, etc.) |
-| `PATCH` | `/api/tasks/:id` | Update status, toggle completion, or edit specific properties |
-| `PUT` | `/api/tasks/:id` | Full update of an existing task |
-| `DELETE` | `/api/tasks/:id` | Delete a single task |
+| `PATCH` | `/api/tasks/:id` | Update status, toggle completion, or edit fields |
+| `PUT` | `/api/tasks/:id` | Full update of existing task |
+| `DELETE` | `/api/tasks/:id` | Remove a single task |
 | `DELETE` | `/api/tasks-bulk/completed` | Clear all completed tasks |
-| `POST` | `/api/tasks/bulk` | Batch actions on multiple tasks (`action: 'delete' \| 'complete' \| 'incomplete' \| 'setPriority' \| 'setCategory'`) |
-| `GET` | `/api/export` | Download all tasks as JSON file attachment |
+| `POST` | `/api/tasks/bulk` | Batch action on tasks (`action: 'delete' \| 'complete' \| 'incomplete' \| ...`) |
+| `GET` | `/api/export` | Download tasks as JSON file attachment |
 | `POST` | `/api/import` | Import tasks from JSON payload |
-| `POST` | `/api/reset` | Reset tasks to default demo dataset |
+| `POST` | `/api/reset` | Reset tasks to default sample dataset |
 
 ---
 
-## 🚀 How to Push this Project to GitHub
+## 🚀 Pushing to GitHub
 
-### Why GitHub Web Upload Failed Previously
-- **100-File Limit**: The GitHub website upload tool only accepts up to 100 files at a time and cannot handle nested folder hierarchies properly.
-- **`node_modules` Bloat**: The `node_modules` folder contains thousands of small files and tens of megabytes that should never be pushed to GitHub.
-- **Solution**: A `.gitignore` file has now been configured to automatically ignore `node_modules`, `dist`, and temporary cache files. You can now push the clean source code directly with standard Git commands.
-
-### Push Commands
-
-Run the following commands in your terminal at the root of `training_project`:
+To push all changes to your repository:
 
 ```bash
-# 1. Stage the restructured folders and .gitignore
 git add .
-
-# 2. Commit the changes
-git commit -m "Organize full-stack architecture into frontend, backend, and documentation"
-
-# 3. Push to your GitHub repository
+git commit -m "Elevate theme to professional futuristic cyber-HUD with interactive quantum canvas"
 git push origin main
 ```
-
-*(If you ever need to force update your branch or overwrite previous web uploads: `git push -u origin main --force`)*
