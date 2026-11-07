@@ -1,11 +1,25 @@
 [
   {
+    "id": 1794055892016,
+    "title": "sleep well",
+    "description": "",
+    "category": "College",
+    "priority": "Medium",
+    "completed": true,
+    "dueDate": "2026-11-09",
+    "tags": [],
+    "subtasks": [],
+    "status": "completed",
+    "createdAt": 1794055892016,
+    "updatedAt": 1794055897359
+  },
+  {
     "id": 1730870400000,
     "title": "Finalize Operating Systems architecture report",
     "description": "Document virtual memory management, page replacement algorithms, and benchmark scheduling results.",
     "category": "College",
     "priority": "High",
-    "completed": false,
+    "completed": true,
     "dueDate": "2026-11-07",
     "tags": [
       "Academics",
@@ -29,9 +43,9 @@
         "completed": false
       }
     ],
-    "status": "todo",
+    "status": "completed",
     "createdAt": 1793927541443,
-    "updatedAt": 1793954232233
+    "updatedAt": 1794055854904
   },
   {
     "id": 1730863200000,
@@ -39,7 +53,7 @@
     "description": "Buy organic greens, almond milk, oats, chicken breasts, and spices.",
     "category": "Personal",
     "priority": "Low",
-    "completed": false,
+    "completed": true,
     "dueDate": "2026-11-04",
     "tags": [
       "Health",
@@ -57,9 +71,9 @@
         "completed": false
       }
     ],
-    "status": "todo",
+    "status": "completed",
     "createdAt": 1793859141443,
-    "updatedAt": 1793954231625
+    "updatedAt": 1794055858838
   },
   {
     "id": 1730860000000,
@@ -67,7 +81,7 @@
     "description": "Create interactive Figma wireframes and run accessibility contrast checks on light & dark mode tokens.",
     "category": "Work",
     "priority": "High",
-    "completed": false,
+    "completed": true,
     "dueDate": "2026-11-06",
     "tags": [
       "Design",
@@ -91,8 +105,8 @@
         "completed": false
       }
     ],
-    "status": "todo",
+    "status": "completed",
     "createdAt": 1793837541443,
-    "updatedAt": 1793954230898
+    "updatedAt": 1794055861122
   }
 ]

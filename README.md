@@ -1,31 +1,28 @@
-# TaskSprint // QUANTUM HUD ⚡ — Futuristic Cyber-Velocity Task Command
+# TaskSprint — Modern Sprint Task Management
 
-TaskSprint is a high-velocity full-stack sprint task management application featuring a **Node.js + Express** REST API backend and a **React 18 + Vite** frontend. Built with an ultra-sleek, professional sci-fi HUD aesthetic, an interactive **Quantum Neural Grid physics canvas**, tactile sound synthesis, and real-time sprint velocity analytics.
+TaskSprint is a modern, full-stack sprint task management application inspired by the clean, focused design language of **Linear**, **Vercel**, and **Raycast**. Built with a **Node.js + Express** REST API backend and a **React 18 + Vite** frontend.
 
 ---
 
-## 🌌 Futuristic Features & Cyber Aesthetics
+## ✨ Features & Design Highlights
 
-1. **Interactive Quantum Physics Engine (`AnimatedBackground.jsx`)**:
-   - **Quantum Particle Nodes**: Floating luminous energy particles that dynamically drift, pulse, and interact.
-   - **Neural Laser Filaments**: Proximity-based dynamic laser filaments with gradient neon coloring connecting nodes in real time.
-   - **Mouse Gravitational Warp**: The cursor generates a local holographic gravity field that pulls and connects nearby nodes with energetic electric arcs.
-   - **Kinetic Quantum Shockwaves**: Clicking anywhere generates resonant holographic shockwaves that physically disperse surrounding particles.
-   - **Perspective Cyber Grid & Radar Scanner**: Smooth downward radar laser beam and a 3D perspective cyber grid along the horizon.
-   - **Multi-Mode Selector**: Cycle between **Quantum Grid ⚡**, **Hyperspace Warp 🚀**, and **FX Off ⏸️** right from the header.
+1. **Refined SaaS Design System**:
+   - **Clean Typography**: Powered by **Inter**, **Plus Jakarta Sans**, and **JetBrains Mono** for clear hierarchy, natural casing, and readable metrics.
+   - **Modern Dark/Light Themes**: Deep obsidian dark mode (`#090a0f`) and crisp daylight theme with subtle frosted glass surfaces and 1px precision borders.
+   - **Intuitive Status & Priority Indicators**: Color-coded badges for categories (`Work`, `College`, `Personal`) and dot priority pills (`High`, `Medium`, `Low`).
+   - **Interactive Ambient Flow Canvas**: A subtle, organic particle mesh that gently interacts with cursor proximity and click ripples without distracting from your tasks.
 
-2. **Professional Aerospace Cyber-HUD UI**:
-   - **Typography**: Google Fonts pairing of **Orbitron**, **Space Grotesk**, and **JetBrains Mono** for crisp telemetry and high-tech typography.
-   - **Holographic Glassmorphism**: Translucent obsidian surfaces with tactical corner brackets, glowing neon laser borders, and animated border sweeps.
-   - **Pulsing Telemetry Badges**: Live sprint velocity radar beacons, tactical priority hazard badges (`High`, `Medium`, `Low`), and category chips (`College`, `Work`, `Personal`).
-   - **Tactile Audio Feedback**: Synthesized Web Audio API harmonics with dual-oscillator resonant cyber-chime on task completions.
-   - **Neon Confetti**: Particle explosions on sprint completion with cyber cyan, magenta, aqua, and electric violet colorways.
+2. **Sprint Management Capabilities**:
+   - **Dual Views**: Toggle between **List View** with subtask checklists and **Kanban Board** with drag/move stage transitions (`To Do`, `In Progress`, `Done`).
+   - **Real-Time Sprint Progress**: Live velocity progress bar, completion percentage, overdue counters, and active tickets.
+   - **Keyboard Shortcuts**: Focus search (`/` or `Ctrl+K`), quick add (`N`), view switching (`1` / `2`), and modal dismiss (`Esc`).
+   - **Bulk Actions**: Batch complete, delete, or re-prioritize multiple tasks with a floating action bar.
+   - **Data Portability**: Full JSON export and import for task backup and migration.
+   - **Acoustic Feedback**: Subtle notification chime and celebratory confetti upon completing sprint tickets.
 
 ---
 
 ## 📁 Project Architecture
-
-The workspace is organized into modular `frontend` and `backend` packages:
 
 ```
 training_project/
@@ -37,11 +34,11 @@ training_project/
 ├── frontend/                      # React 18 + Vite Client Application
 │   ├── src/
 │   │   ├── components/
-│   │   │   └── AnimatedBackground.jsx  # Quantum particle & laser physics canvas
-│   │   ├── App.jsx                # Main HUD dashboard & task management
-│   │   ├── index.css              # Cyber-HUD & Quantum Glass design system
+│   │   │   └── AnimatedBackground.jsx  # Interactive ambient mesh canvas
+│   │   ├── App.jsx                # Main workspace dashboard & interaction logic
+│   │   ├── index.css              # Professional SaaS design system (Linear / Vercel style)
 │   │   └── main.jsx               # React DOM entry point
-│   ├── index.html                 # Vite HTML template with Orbitron/Space Grotesk
+│   ├── index.html                 # Vite HTML template
 │   ├── vite.config.js             # Vite proxy (/api -> http://localhost:5000)
 │   └── package.json               # Frontend dependencies (react, lucide-react, etc.)
 │
@@ -52,7 +49,7 @@ training_project/
 
 ---
 
-## ⚡ Execution Guide
+## ⚡ Quick Start
 
 ### Prerequisites
 - **Node.js**: v18.0.0 or higher
@@ -64,24 +61,23 @@ training_project/
 
 From `training_project/`:
 
-1. **Install dependencies** (if not already installed):
+1. **Install dependencies**:
    ```bash
    npm run install:all
    ```
 
-2. **Launch Backend Server** (Port `5000`):
+2. **Start Backend Server** (Port `5000`):
    ```bash
    npm run start:backend
    ```
-   *(Or with auto-restart: `npm run dev:backend`)*
 
-3. **Launch Frontend Dev Server** (in a second terminal, Port `3000`):
+3. **Start Frontend Dev Server** (in a second terminal, Port `3000`):
    ```bash
    npm run dev:frontend
    ```
 
-4. Open in browser:
-   - **HUD App**: [http://localhost:3000](http://localhost:3000)
+4. Open in your browser:
+   - **Frontend App**: [http://localhost:3000](http://localhost:3000)
    - **Backend API**: [http://localhost:5000/api/tasks](http://localhost:5000/api/tasks)
 
 ---
@@ -108,27 +104,27 @@ npm run dev
 
 | Method | Endpoint | Description |
 |---|---|---|
-| `GET` | `/api/health` | System health check, uptime, and task count |
-| `GET` | `/api/analytics` | Completion rates, overdue counts, and category statistics |
-| `GET` | `/api/tasks` | Retrieve all tasks (supports `?category=`, `?priority=`, `?search=`, `?sort=`) |
+| `GET` | `/api/health` | Service health status, uptime, and task count |
+| `GET` | `/api/analytics` | Completion rates, overdue counts, and category breakdown |
+| `GET` | `/api/tasks` | Get all tasks (supports `?category=`, `?priority=`, `?search=`, `?sort=`) |
 | `POST` | `/api/tasks` | Create a new task (body: `title`, `description`, `category`, `priority`, etc.) |
-| `PATCH` | `/api/tasks/:id` | Update status, toggle completion, or edit fields |
-| `PUT` | `/api/tasks/:id` | Full update of existing task |
-| `DELETE` | `/api/tasks/:id` | Remove a single task |
+| `PATCH` | `/api/tasks/:id` | Update status, toggle completion, or edit specific properties |
+| `PUT` | `/api/tasks/:id` | Full update of an existing task |
+| `DELETE` | `/api/tasks/:id` | Delete a single task |
 | `DELETE` | `/api/tasks-bulk/completed` | Clear all completed tasks |
-| `POST` | `/api/tasks/bulk` | Batch action on tasks (`action: 'delete' \| 'complete' \| 'incomplete' \| ...`) |
+| `POST` | `/api/tasks/bulk` | Batch action on tasks (`delete`, `complete`, `incomplete`, etc.) |
 | `GET` | `/api/export` | Download tasks as JSON file attachment |
 | `POST` | `/api/import` | Import tasks from JSON payload |
-| `POST` | `/api/reset` | Reset tasks to default sample dataset |
+| `POST` | `/api/reset` | Reset tasks to default demo dataset |
 
 ---
 
 ## 🚀 Pushing to GitHub
 
-To push all changes to your repository:
+To push your project to GitHub:
 
 ```bash
 git add .
-git commit -m "Elevate theme to professional futuristic cyber-HUD with interactive quantum canvas"
+git commit -m "Refine design into clean, professional SaaS interface (Linear/Vercel style)"
 git push origin main
 ```
